@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EGTI – Électricien professionnel</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      color: #ffffff;
+      background-color: #000;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* === ÉCLAIR LARGE EN ZIGZAG À GAUCHE === */
+    .zigzag-lightning {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 250px;
+      height: 100%;
+      background: #f6d800;
+      clip-path: polygon(
+        15% 0%, 50% 20%, 40% 20%, 60% 50%, 50% 50%, 70% 80%, 30% 60%, 40% 60%, 20% 30%, 30% 30%
+      );
+      z-index: 0;
+    }
+
+    body > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    header .vertical-title {
+      display: flex;
+      flex-direction: line;
+      align-items: center;
+      font-family: 'Merriweather', Arial, Helvetica, sans-serif;
+      justify-content: center;
+      font-size: 3rem;
+      color: #f6d800;
+      -webkit-text-stroke: 1.5px #ffb301;
+      text-shadow:
+       0 0 5px #f6d800,
+       0 0 5px #f6d800,
+       0 0 10px #f6d800,
+       0 0 40px #f6d800,
+       0 0 80px #f6d800;
+    }
+
+    .vertical-title div {
+      display: flex;
+      align-items: center;
+      margin: 0.2rem 0;
+    }
+
+    .letter {
+      font-size: 4rem;
+      font-weight: bold;
+      margin-right: 1rem;
+    }
+
+    .meaning {
+      font-size: 2rem;
+    }
+
+    .letter-meaning {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 1.5rem;
+      margin-top: 1rem;
+      color: #ffffff;
+    }
+
+    .letter-meaning p {
+      margin: 0.2rem 0;
+    }
+
+    header p {
+      text-align:center;
+      margin-top: 0.5rem;
+      font-size: 2rem;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      background: #111;
+      border-top: 1px solid #222;
+      border-bottom: 1px solid #222;
+      z-index: 1;
+      position: relative;
+    }
+
+    nav a {
+      color: #ffffff;
+      text-decoration: none;
+      padding: 1rem 2rem;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      background: #ffffff;
+      color: #000;
+      box-shadow: 0 0 10px #ffffff;
+    }
+
+    section {
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+
+    /* === SECTION HERO AVEC GALERIE === */
+    .hero {
+      background: rgba(153, 133, 133, 0);
+      padding: 3rem 2rem;
+    }
+
+    .hero h2 {
+      font-size: 2.5rem;
+      color: #fefefe;
+    }
+
+    .hero p {
+      color: #fefefe;
+      margin-top: 1rem;
+      font-size: 1.2rem;
+    }
+
+    .hero-gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .hero-gallery img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #f6d80033;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .hero-gallery img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px #ffffff;
+    }
+
+    .services {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .service {
+      background: #111;
+      border-radius: 10px;
+      padding: 2rem;
+      box-shadow: 0 0 10px #f6d80033;
+      transition: 0.3s;
+    }
+
+    .service:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px #e3e3e3;
+    }
+
+    footer {
+      text-align: center;
+      background: #111;
+      padding: 2rem 1rem;
+      border-top: 1px solid #333;
+      color: #f6d80033;
+      font-size: 0.9rem;
+    }
+
+    .contact {
+      max-width: 600px;
+      margin: auto;
+      text-align: left;
+      background: #111;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #f6d80033;
+    }
+
+    .contact h3 {
+      text-align: center;
+      color: #ffffff;
+    }
+
+    .contact p {
+      margin: 0.5rem 0;
+    }
+
+    .highlight {
+      color: #ffffff;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ÉCLAIR EN ZIGZAG -->
+  <div class="zigzag-lightning"></div>
+
+  <header>
+   <div class="vertical-title">
+    <div><span class="letter">É</span> <span class="meaning">lectricité</span></div>
+    <div><span class="letter">G</span> <span class="meaning">énérale</span></div>
+    <div><span class="letter">T</span> <span class="meaning">ertiaire</span></div>
+    <div><span class="letter">I</span> <span class="meaning">ndustriel</span></div>
+  </div>
+  <p>Éclaire vos projets</p>
+  </header>
+
+  <nav>
+    <a href="#accueil">Accueil</a>
+    <a href="#services">Services</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <section id="accueil" class="hero">
+    <h2>Votre expert en électricité générale</h2>
+    <p>Installation, rénovation et dépannage pour particuliers et professionnels.</p>
+
+    <div class="hero-gallery">
+      <img src="images/Piscine.jpg" alt="Électricité" />
+      <img src="images/Info_sys_1.jpg" alt="Installation électrique" />
+      <img src="images/info_sys_2.jpg" alt="Éclairage" />
+    </div>
+  </section>
+
+  <section id="services">
+    <h2>Nos services</h2>
+    <div class="services">
+      <div class="service">
+        <h3>Installation électrique</h3>
+        <p>Mise en place complète de vos circuits électriques conformes aux normes.</p>
+      </div>
+      <div class="service">
+        <h3>Éclairage intérieur & extérieur</h3>
+        <p>Solutions modernes et économiques pour illuminer vos espaces.</p>
+      </div>
+      <div class="service">
+        <h3>Dépannage rapide</h3>
+        <p>Intervention rapide pour tout problème électrique, 7j/7.</p>
+      </div>
+      <div class="service">
+        <h3>Rénovation</h3>
+        <p>Remise aux normes de vos installations dans l’ancien ou le neuf.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <div class="contact">
+      <h3>EGTI</h3>
+      <p><span class="highlight">Téléphone :</span> 06.20.53.32.59</p>
+      <p><span class="highlight">Email :</span> <a href="mailto:sasu.egti@gmail.com" style="color:#f6d800;">sasu.egti@gmail.com</a></p>
+      <p><span class="highlight">SIRET :</span> 944 328 079 RCS</p>
+      <p><span class="highlight">Zone d’intervention :</span> Toulouse et alentours</p>
+    </div>
+  </section>
+
+  <footer>
+    © 2025 EGTI – Tous droits réservés
+  </footer>
+</body>
+</html>
