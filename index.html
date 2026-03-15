@@ -3,277 +3,409 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>EGTI – Électricien professionnel</title>
-
+  <title>EGTI – Électricien professionnel à Toulouse</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
   <style>
-    body {
-      margin: 0;
-      font-family: 'Arial', sans-serif;
-      color: #ffffff;
-      background-color: #000;
-      position: relative;
-      overflow-x: hidden;
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --yellow: #F6D800; --yellow-dim: rgba(246,216,0,0.12); --yellow-border: rgba(246,216,0,0.25);
+      --black: #080808; --dark: #101010; --dark2: #181818; --dark3: #222222;
+      --white: #FFFFFF; --gray: #777777; --gray-light: #BBBBBB;
+      --radius: 14px; --font-d: 'Bebas Neue', sans-serif; --font-b: 'DM Sans', sans-serif;
     }
-
-    /* === ÉCLAIR LARGE EN ZIGZAG À GAUCHE === */
-    .zigzag-lightning {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 250px;
-      height: 100%;
-      background: #f6d800;
-      clip-path: polygon(
-        15% 0%, 50% 20%, 40% 20%, 60% 50%, 50% 50%, 70% 80%, 30% 60%, 40% 60%, 20% 30%, 30% 30%
-      );
-      z-index: 0;
-    }
-
-    body > * {
-      position: relative;
-      z-index: 1;
-    }
-
-    header .vertical-title {
-      display: flex;
-      flex-direction: line;
-      align-items: center;
-      font-family: 'Merriweather', Arial, Helvetica, sans-serif;
-      justify-content: center;
-      font-size: 3rem;
-      color: #f6d800;
-      -webkit-text-stroke: 1.5px #ffb301;
-      text-shadow:
-       0 0 5px #f6d800,
-       0 0 5px #f6d800,
-       0 0 10px #f6d800,
-       0 0 40px #f6d800,
-       0 0 80px #f6d800;
-    }
-
-    .vertical-title div {
-      display: flex;
-      align-items: center;
-      margin: 0.2rem 0;
-    }
-
-    .letter {
-      font-size: 4rem;
-      font-weight: bold;
-      margin-right: 1rem;
-    }
-
-    .meaning {
-      font-size: 2rem;
-    }
-
-    .letter-meaning {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      font-size: 1.5rem;
-      margin-top: 1rem;
-      color: #ffffff;
-    }
-
-    .letter-meaning p {
-      margin: 0.2rem 0;
-    }
-
-    header p {
-      text-align:center;
-      margin-top: 0.5rem;
-      font-size: 2rem;
-    }
-
-    nav {
-      display: flex;
-      justify-content: center;
-      background: #111;
-      border-top: 1px solid #222;
-      border-bottom: 1px solid #222;
-      z-index: 1;
-      position: relative;
-    }
-
-    nav a {
-      color: #ffffff;
-      text-decoration: none;
-      padding: 1rem 2rem;
-      font-weight: bold;
-      transition: 0.3s;
-    }
-
-    nav a:hover {
-      background: #ffffff;
-      color: #000;
-      box-shadow: 0 0 10px #ffffff;
-    }
-
-    section {
-      padding: 3rem 2rem;
-      text-align: center;
-    }
-
-    /* === SECTION HERO AVEC GALERIE === */
-    .hero {
-      background: rgba(153, 133, 133, 0);
-      padding: 3rem 2rem;
-    }
-
-    .hero h2 {
-      font-size: 2.5rem;
-      color: #fefefe;
-    }
-
-    .hero p {
-      color: #fefefe;
-      margin-top: 1rem;
-      font-size: 1.2rem;
-    }
-
-    .hero-gallery {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
-      margin-top: 2rem;
-    }
-
-    .hero-gallery img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      border-radius: 10px;
-      box-shadow: 0 0 10px #f6d80033;
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-
-    .hero-gallery img:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 20px #ffffff;
-    }
-
-    .services {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-      margin-top: 3rem;
-    }
-
-    .service {
-      background: #111;
-      border-radius: 10px;
-      padding: 2rem;
-      box-shadow: 0 0 10px #f6d80033;
-      transition: 0.3s;
-    }
-
-    .service:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 20px #e3e3e3;
-    }
-
-    footer {
-      text-align: center;
-      background: #111;
-      padding: 2rem 1rem;
-      border-top: 1px solid #333;
-      color: #f6d80033;
-      font-size: 0.9rem;
-    }
-
-    .contact {
-      max-width: 600px;
-      margin: auto;
-      text-align: left;
-      background: #111;
-      padding: 2rem;
-      border-radius: 10px;
-      box-shadow: 0 0 10px #f6d80033;
-    }
-
-    .contact h3 {
-      text-align: center;
-      color: #ffffff;
-    }
-
-    .contact p {
-      margin: 0.5rem 0;
-    }
-
-    .highlight {
-      color: #ffffff;
-      font-weight: bold;
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-b); background: var(--black); color: var(--white); overflow-x: hidden; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; display: flex; align-items: center; justify-content: space-between; padding: 1.1rem 3rem; background: rgba(8,8,8,0.93); backdrop-filter: blur(18px); border-bottom: 1px solid rgba(246,216,0,0.12); }
+    .nav-logo { font-family: var(--font-d); font-size: 2rem; color: var(--yellow); letter-spacing: .1em; text-shadow: 0 0 24px rgba(246,216,0,.35); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+    .nav-links a { color: var(--gray-light); text-decoration: none; font-size: .83rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; transition: color .2s; }
+    .nav-links a:hover { color: var(--yellow); }
+    .nav-cta { background: var(--yellow) !important; color: var(--black) !important; padding: .5rem 1.3rem; border-radius: 100px; font-weight: 700 !important; }
+    .nav-toggle { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; padding: 4px; }
+    .nav-toggle span { display: block; width: 24px; height: 2px; background: var(--white); border-radius: 2px; }
+    .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 9rem 3rem 5rem; position: relative; overflow: hidden; }
+    .hero-bg { position: absolute; inset: 0; z-index: 0; background: radial-gradient(ellipse 55% 65% at 85% 50%, rgba(246,216,0,.07) 0%, transparent 65%), radial-gradient(ellipse 35% 70% at 5% 90%, rgba(246,216,0,.04) 0%, transparent 55%); }
+    .hero-bolt { position: absolute; right: 7%; top: 50%; transform: translateY(-50%); width: 4px; height: 58vh; background: var(--yellow); opacity: .12; clip-path: polygon(40% 0%,100% 33%,55% 33%,100% 66%,50% 66%,100% 100%,0% 55%,45% 55%,0% 28%,45% 28%); }
+    .hero-content { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; text-align: center; display: flex; flex-direction: column; align-items: center; }
+    .hero-badge { display: inline-flex; align-items: center; gap: .5rem; background: var(--yellow-dim); border: 1px solid var(--yellow-border); color: var(--yellow); font-size: .76rem; font-weight: 600; letter-spacing: .15em; text-transform: uppercase; padding: .38rem 1rem; border-radius: 100px; margin-bottom: 1.8rem; }
+    .hero-badge i { display:inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--yellow); animation: blink 2s infinite; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.25} }
+    .hero h1 { font-family: var(--font-d); font-size: clamp(3.5rem,8.5vw,7.2rem); line-height: .93; letter-spacing: .02em; margin-bottom: 1.4rem; text-align: center; }
+    .hero h1 span { color: var(--yellow); display: block; }
+    .hero-sub { font-size: 1.1rem; color: var(--gray-light); line-height: 1.75; max-width: 500px; margin-bottom: 2.5rem; font-weight: 300; text-align: center; }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+    .btn { display: inline-flex; align-items: center; gap: .55rem; font-family: var(--font-b); font-size: .88rem; font-weight: 600; padding: .85rem 2rem; border-radius: 100px; text-decoration: none; cursor: pointer; border: none; transition: .2s; }
+    .btn-y { background: var(--yellow); color: var(--black); }
+    .btn-y:hover { background: #e0c200; transform: translateY(-2px); }
+    .btn-o { background: transparent; color: var(--white); border: 1px solid rgba(255,255,255,.22); }
+    .btn-o:hover { border-color: var(--yellow); background: var(--yellow-dim); }
+    .hero-stats { display: flex; gap: 3rem; margin-top: 4rem; padding-top: 2.5rem; border-top: 1px solid rgba(255,255,255,.07); flex-wrap: wrap; justify-content: center; width: 100%; }
+    .stat-n { font-family: var(--font-d); font-size: 2.4rem; color: var(--yellow); line-height: 1; text-align: center; }
+    .stat-l { font-size: .76rem; color: var(--gray); text-transform: uppercase; letter-spacing: .1em; margin-top: .3rem; text-align: center; }
+    section { padding: 7rem 3rem; }
+    .section-label { font-size: .74rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--yellow); margin-bottom: .7rem; }
+    .section-title { font-family: var(--font-d); font-size: clamp(2.2rem,5vw,3.4rem); letter-spacing: .02em; line-height: 1.05; }
+    .section-sub { color: var(--gray); font-size: .95rem; line-height: 1.7; margin-top: .8rem; max-width: 480px; }
+    #bornes { background: var(--dark); }
+    .bornes-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; margin-top: 3.5rem; }
+    .bornes-text p { font-size: .95rem; color: var(--gray-light); line-height: 1.8; margin-top: 1rem; }
+    .irve-badge { display: inline-flex; align-items: center; gap: .7rem; background: rgba(0,180,100,.1); border: 1px solid rgba(0,180,100,.3); color: #4ade80; font-size: .78rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; padding: .45rem 1.1rem; border-radius: 100px; margin-top: 1.5rem; }
+    .bornes-cards { display: flex; flex-direction: column; gap: 1.2rem; }
+    .borne-card { background: var(--dark2); border: 1px solid rgba(255,255,255,.06); border-radius: var(--radius); padding: 1.8rem 2rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; transition: border-color .3s, transform .3s; }
+    .borne-card:hover { border-color: rgba(246,216,0,.3); transform: translateX(5px); }
+    .borne-card.featured { border-color: rgba(246,216,0,.35); background: rgba(246,216,0,.04); }
+    .borne-tag { font-size: .72rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--black); background: var(--yellow); padding: .25rem .7rem; border-radius: 100px; display: inline-block; margin-bottom: .7rem; }
+    .borne-card.featured .borne-tag { background: #4ade80; }
+    .borne-name { font-size: 1.05rem; font-weight: 600; margin-bottom: .2rem; }
+    .borne-power { font-size: .82rem; color: var(--gray); }
+    .borne-amount { font-family: var(--font-d); font-size: 2.6rem; color: var(--yellow); line-height: 1; }
+    .borne-ht { font-size: .75rem; color: var(--gray); text-transform: uppercase; letter-spacing: .08em; margin-top: .2rem; }
+    .borne-note { font-size: .7rem; color: var(--gray); font-style: italic; margin-top: .15rem; }
+    .legrand-badge { display: inline-flex; align-items: center; gap: .5rem; margin-top: 1rem; background: var(--dark2); border: 1px solid rgba(255,255,255,.08); border-radius: 8px; padding: .6rem 1.2rem; font-size: .78rem; color: var(--gray-light); font-weight: 500; }
+    #services { background: var(--black); }
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.4rem; margin-top: 3.5rem; }
+    .svc { background: var(--dark2); border: 1px solid rgba(255,255,255,.06); border-radius: var(--radius); padding: 2rem; position: relative; overflow: hidden; transition: transform .3s, border-color .3s; }
+    .svc::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--yellow); transform: scaleX(0); transform-origin: left; transition: transform .3s; }
+    .svc:hover { transform: translateY(-5px); border-color: rgba(246,216,0,.2); }
+    .svc:hover::before { transform: scaleX(1); }
+    .svc-icon { width: 48px; height: 48px; background: var(--yellow-dim); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin-bottom: 1.2rem; }
+    .svc h3 { font-size: 1rem; font-weight: 600; margin-bottom: .6rem; }
+    .svc p { font-size: .875rem; color: var(--gray); line-height: 1.65; }
+    #pourquoi { background: var(--dark); }
+    .why-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; margin-top: 3.5rem; }
+    .why-list { list-style: none; }
+    .why-list li { display: flex; gap: 1rem; align-items: flex-start; padding: 1.15rem 0; border-bottom: 1px solid rgba(255,255,255,.06); }
+    .why-list li:last-child { border-bottom: none; }
+    .chk { width: 22px; height: 22px; background: var(--yellow); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; font-size: .6rem; color: var(--black); font-weight: 900; }
+    .why-list h4 { font-size: .93rem; font-weight: 600; margin-bottom: .2rem; }
+    .why-list p { font-size: .83rem; color: var(--gray); line-height: 1.55; }
+    .why-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .wcard { background: var(--dark2); border: 1px solid rgba(255,255,255,.06); border-radius: var(--radius); padding: 1.8rem 1.5rem; text-align: center; }
+    .wcard-n { font-family: var(--font-d); font-size: 3rem; color: var(--yellow); line-height: 1; }
+    .wcard-l { font-size: .77rem; color: var(--gray); text-transform: uppercase; letter-spacing: .08em; margin-top: .35rem; }
+    #zone { background: var(--black); }
+    .zone-wrap { display: grid; grid-template-columns: 1fr 1.1fr; gap: 4rem; align-items: start; margin-top: 3.5rem; }
+    .zone-map { background: var(--dark2); border: 1px solid var(--yellow-border); border-radius: var(--radius); padding: 2rem; }
+    .map-vis { background: var(--dark3); border-radius: 10px; height: 220px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; position: relative; overflow: hidden; }
+    .map-vis::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 50% 50%, rgba(246,216,0,.08) 0%, transparent 65%); }
+    .pin { width: 14px; height: 14px; background: var(--yellow); border-radius: 50%; position: relative; z-index: 1; animation: pinPulse 2.5s infinite; }
+    .pin::after { content: ''; position: absolute; top: 50%; left: 50%; width: 60px; height: 60px; border: 2px solid var(--yellow); border-radius: 50%; transform: translate(-50%,-50%); opacity: 0; animation: ripple 2.5s infinite; }
+    @keyframes pinPulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.25)} }
+    @keyframes ripple { 0%{opacity:.5;transform:translate(-50%,-50%) scale(.3)} 100%{opacity:0;transform:translate(-50%,-50%) scale(2.8)} }
+    .map-city { font-family: var(--font-d); font-size: 1.8rem; color: var(--yellow); }
+    .map-sub { font-size: .82rem; color: var(--gray); margin-top: .2rem; }
+    .cities-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .7rem; }
+    .ctag { background: var(--dark2); border: 1px solid rgba(255,255,255,.06); border-radius: 8px; padding: .6rem 1rem; font-size: .84rem; color: var(--gray-light); display: flex; align-items: center; gap: .5rem; }
+    .ctag::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--yellow); flex-shrink: 0; }
+    #avis { background: var(--dark); }
+    .google-rating-header { display: flex; align-items: center; gap: 2rem; margin-top: 2rem; margin-bottom: 2.5rem; flex-wrap: wrap; }
+    .google-score { font-family: var(--font-d); font-size: 4.5rem; color: var(--yellow); line-height: 1; }
+    .google-stars { color: var(--yellow); font-size: 1.4rem; letter-spacing: .05em; }
+    .google-count { font-size: .85rem; color: var(--gray); margin-top: .3rem; }
+    .google-logo { display: flex; align-items: center; gap: .6rem; font-size: .82rem; color: var(--gray); border-left: 1px solid rgba(255,255,255,.1); padding-left: 2rem; }
+    .avis-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 1.4rem; }
+    .avis-card { background: var(--dark2); border: 1px solid rgba(255,255,255,.06); border-radius: var(--radius); padding: 2rem; }
+    .stars { color: var(--yellow); font-size: .95rem; margin-bottom: .8rem; }
+    .avis-text { font-size: .9rem; color: var(--gray-light); line-height: 1.72; margin-bottom: 1.5rem; font-style: italic; }
+    .reviewer { display: flex; align-items: center; gap: .8rem; }
+    .avi { width: 38px; height: 38px; border-radius: 50%; background: var(--yellow-dim); display: flex; align-items: center; justify-content: center; font-family: var(--font-d); font-size: 1rem; color: var(--yellow); flex-shrink: 0; overflow: hidden; }
+    .avi img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+    .rev-name { font-size: .87rem; font-weight: 600; }
+    .rev-loc { font-size: .76rem; color: var(--gray); margin-top: .1rem; }
+    .avis-loading { text-align: center; color: var(--gray); padding: 2rem; font-size: .9rem; grid-column: 1/-1; }
+    #contact { background: var(--black); }
+    .contact-wrap { display: grid; grid-template-columns: 1fr 1.1fr; gap: 4rem; margin-top: 3.5rem; }
+    .citem { display: flex; gap: 1.2rem; align-items: flex-start; padding: 1.2rem 0; border-bottom: 1px solid rgba(255,255,255,.06); }
+    .citem:last-child { border-bottom: none; }
+    .cicon { width: 42px; height: 42px; background: var(--yellow-dim); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+    .clabel { font-size: .72rem; text-transform: uppercase; letter-spacing: .12em; color: var(--gray); margin-bottom: .2rem; }
+    .cval { font-size: .95rem; font-weight: 500; }
+    .cval a { color: var(--yellow); text-decoration: none; }
+    .cval a:hover { text-decoration: underline; }
+    .cform { background: var(--dark2); border: 1px solid rgba(255,255,255,.07); border-radius: var(--radius); padding: 2.5rem; }
+    .cform h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 1.5rem; }
+    .fg { margin-bottom: 1.1rem; }
+    .fg label { display: block; font-size: .78rem; font-weight: 500; color: var(--gray); text-transform: uppercase; letter-spacing: .1em; margin-bottom: .45rem; }
+    .fg input, .fg textarea, .fg select { width: 100%; background: var(--dark3); border: 1px solid rgba(255,255,255,.1); border-radius: 8px; color: var(--white); font-family: var(--font-b); font-size: .88rem; padding: .78rem 1rem; outline: none; transition: border-color .2s; }
+    .fg input:focus, .fg textarea:focus, .fg select:focus { border-color: var(--yellow); }
+    .fg textarea { min-height: 100px; resize: vertical; }
+    .fg select option { background: var(--dark3); }
+    .frow { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .fsub { width: 100%; background: var(--yellow); color: var(--black); border: none; border-radius: 100px; font-family: var(--font-b); font-size: .88rem; font-weight: 700; padding: 1rem; cursor: pointer; transition: .2s; margin-top: .5rem; text-transform: uppercase; letter-spacing: .06em; }
+    .fsub:hover { background: #e0c200; transform: translateY(-1px); }
+    footer { background: var(--dark); border-top: 1px solid rgba(255,255,255,.07); padding: 2.5rem 3rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .flogo { font-family: var(--font-d); font-size: 1.5rem; color: var(--yellow); }
+    footer p { font-size: .8rem; color: var(--gray); }
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: rgba(8,8,8,.97); padding: 1.5rem; gap: 1.2rem; border-bottom: 1px solid rgba(246,216,0,.15); }
+      .nav-links.open { display: flex; }
+      .nav-toggle { display: flex; }
+      section { padding: 5rem 1.5rem; }
+      .hero { padding: 8rem 1.5rem 4rem; }
+      .bornes-intro, .why-wrap, .zone-wrap, .contact-wrap { grid-template-columns: 1fr; gap: 2.5rem; }
+      .hero-stats { gap: 2rem; }
+      .hero-bolt { display: none; }
+      footer { flex-direction: column; text-align: center; padding: 2rem 1.5rem; }
+      .frow { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ÉCLAIR EN ZIGZAG -->
-  <div class="zigzag-lightning"></div>
+<nav id="navbar">
+  <div class="nav-logo">EGTI</div>
+  <ul class="nav-links" id="navlinks">
+    <li><a href="#accueil">Accueil</a></li>
+    <li><a href="#bornes">Bornes VE</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#pourquoi">Pourquoi nous</a></li>
+    <li><a href="#zone">Zone</a></li>
+    <li><a href="#avis">Avis</a></li>
+    <li><a href="#contact" class="nav-cta">Contact</a></li>
+  </ul>
+  <button class="nav-toggle" id="toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
 
-  <header>
-   <div class="vertical-title">
-    <div><span class="letter">É</span> <span class="meaning">lectricité</span></div>
-    <div><span class="letter">G</span> <span class="meaning">énérale</span></div>
-    <div><span class="letter">T</span> <span class="meaning">ertiaire</span></div>
-    <div><span class="letter">I</span> <span class="meaning">ndustriel</span></div>
+<section id="accueil" class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-bolt"></div>
+  <div class="hero-content">
+    <div class="hero-badge"><i></i>Électricien certifié – Toulouse</div>
+    <h1>ÉLECTRICITÉ<span>GÉNÉRALE TERTIAIRE</span>INDUSTRIEL</h1>
+    <p class="hero-sub">Installation, rénovation, dépannage et bornes de recharge pour particuliers et professionnels sur Toulouse et ses alentours.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn btn-y">Demander un devis</a>
+      <a href="#services" class="btn btn-o">Nos services →</a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="stat-n">10+</div><div class="stat-l">Ans d'expérience</div></div>
+      <div><div class="stat-n">100%</div><div class="stat-l">Certifié &amp; Assuré</div></div>
+      <div><div class="stat-n">IRVE</div><div class="stat-l">Installateur agréé</div></div>
+    </div>
   </div>
-  <p>Éclaire vos projets</p>
-  </header>
+</section>
 
-  <nav>
-    <a href="#accueil">Accueil</a>
-    <a href="#services">Services</a>
-    <a href="#contact">Contact</a>
-  </nav>
-
-  <section id="accueil" class="hero">
-    <h2>Votre expert en électricité générale</h2>
-    <p>Installation, rénovation et dépannage pour particuliers et professionnels.</p>
-
-    <div class="hero-gallery">
-      <img src="images/Piscine.jpg" alt="Électricité" />
-      <img src="images/Info_sys_1.jpg" alt="Installation électrique" />
-      <img src="images/info_sys_2.jpg" alt="Éclairage" />
+<section id="bornes">
+  <div class="section-label">Mobilité électrique</div>
+  <div class="section-title">Bornes de Recharge<br>Voiture Électrique</div>
+  <p class="section-sub">Partenaire officiel Legrand, installateur certifié IRVE. Rechargez chez vous ou dans votre entreprise.</p>
+  <div class="bornes-intro">
+    <div class="bornes-text">
+      <p>EGTI est votre spécialiste pour l'installation de bornes de recharge à domicile et en entreprise sur Toulouse et ses alentours.</p>
+      <p>En tant qu'installateur agréé IRVE, nous garantissons une installation conforme et sécurisée, éligible aux aides de l'État.</p>
+      <div class="irve-badge">✓ Installateur Agréé IRVE · Legrand Partenaire</div>
+      <div class="legrand-badge">Matériel certifié <strong style="color:#e63329;margin-left:.3rem;">LEGRAND®</strong></div>
     </div>
-  </section>
-
-  <section id="services">
-    <h2>Nos services</h2>
-    <div class="services">
-      <div class="service">
-        <h3>Installation électrique</h3>
-        <p>Mise en place complète de vos circuits électriques conformes aux normes.</p>
+    <div class="bornes-cards">
+      <div class="borne-card">
+        <div><div class="borne-tag">Entrée de gamme</div><div class="borne-name">Green UP Access</div><div class="borne-power">Legrand · 3,8 kW</div></div>
+        <div><div class="borne-amount">399€</div><div class="borne-ht">HT posé</div><div class="borne-note">*selon distance câble</div></div>
       </div>
-      <div class="service">
-        <h3>Éclairage intérieur & extérieur</h3>
-        <p>Solutions modernes et économiques pour illuminer vos espaces.</p>
+      <div class="borne-card featured">
+        <div><div class="borne-tag">Recommandé</div><div class="borne-name">Green UP Home</div><div class="borne-power">Legrand · 7,4 kW</div></div>
+        <div><div class="borne-amount" style="color:#4ade80;">990€</div><div class="borne-ht">HT posé</div><div class="borne-note">*selon distance câble</div></div>
       </div>
-      <div class="service">
-        <h3>Dépannage rapide</h3>
-        <p>Intervention rapide pour tout problème électrique, 7j/7.</p>
-      </div>
-      <div class="service">
-        <h3>Rénovation</h3>
-        <p>Remise aux normes de vos installations dans l’ancien ou le neuf.</p>
+      <div class="borne-card" style="border-color:rgba(246,216,0,.15);background:rgba(246,216,0,.03);">
+        <div><div class="borne-name" style="font-size:.9rem;">Pourquoi choisir EGTI pour votre borne ?</div><p style="font-size:.82rem;color:var(--gray);margin-top:.5rem;line-height:1.65;">Devis gratuit · Installation soignée · Éligible ADVENIR · Démarches facilitées</p></div>
+        <a href="#contact" class="btn btn-y" style="flex-shrink:0;white-space:nowrap;">Devis gratuit</a>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section id="contact">
-    <h2>Contact</h2>
-    <div class="contact">
-      <h3>EGTI</h3>
-      <p><span class="highlight">Téléphone :</span> 06.20.53.32.59</p>
-      <p><span class="highlight">Email :</span> <a href="mailto:sasu.egti@gmail.com" style="color:#f6d800;">sasu.egti@gmail.com</a></p>
-      <p><span class="highlight">SIRET :</span> 944 328 079 RCS</p>
-      <p><span class="highlight">Zone d’intervention :</span> Toulouse et alentours</p>
+<section id="services">
+  <div class="section-label">Ce que nous faisons</div>
+  <div class="section-title">Nos Services</div>
+  <p class="section-sub">Des prestations complètes pour tous vos besoins électriques, du particulier au professionnel.</p>
+  <div class="services-grid">
+    <div class="svc"><div class="svc-icon">⚙️</div><h3>Installation électrique</h3><p>Mise en place complète de vos circuits électriques, conformes aux normes NF C 15-100.</p></div>
+    <div class="svc"><div class="svc-icon">💡</div><h3>Éclairage intérieur &amp; extérieur</h3><p>Solutions LED modernes et économiques pour illuminer vos espaces de vie, bureaux et façades.</p></div>
+    <div class="svc"><div class="svc-icon">🔧</div><h3>Dépannage rapide</h3><p>Intervention rapide pour tout problème électrique. Court-circuit, panne de tableau, coupure secteur.</p></div>
+    <div class="svc"><div class="svc-icon">🏗️</div><h3>Rénovation</h3><p>Remise aux normes de vos installations électriques dans l'ancien ou le neuf.</p></div>
+    <div class="svc"><div class="svc-icon">🏢</div><h3>Électricité tertiaire</h3><p>Câblage et installation pour bureaux, commerces et locaux industriels.</p></div>
+    <div class="svc"><div class="svc-icon">🔌</div><h3>Bornes de recharge VE</h3><p>Installation de bornes de recharge pour véhicules électriques. Installateur agréé IRVE.</p></div>
+  </div>
+</section>
+
+<section id="pourquoi">
+  <div class="section-label">Nos engagements</div>
+  <div class="section-title">Pourquoi Choisir EGTI ?</div>
+  <div class="why-wrap">
+    <ul class="why-list">
+      <li><div class="chk">✓</div><div><h4>Certifié &amp; Assuré</h4><p>Travaux conformes aux normes, couverts par notre assurance décennale.</p></div></li>
+      <li><div class="chk">✓</div><div><h4>Devis gratuit et transparent</h4><p>Pas de mauvaise surprise : devis détaillé et gratuit avant toute intervention.</p></div></li>
+      <li><div class="chk">✓</div><div><h4>Réactivité</h4><p>Intervention rapide sur Toulouse et les communes proches.</p></div></li>
+      <li><div class="chk">✓</div><div><h4>Matériel de qualité</h4><p>Legrand, Schneider Electric, Hager — produits reconnus pour leur durabilité.</p></div></li>
+      <li><div class="chk">✓</div><div><h4>Expertise IRVE</h4><p>Installateur certifié bornes de recharge, éligible aux programmes d'aides nationaux.</p></div></li>
+    </ul>
+    <div class="why-cards">
+      <div class="wcard"><div class="wcard-n">10+</div><div class="wcard-l">Ans d'exp.</div></div>
+      <div class="wcard"><div class="wcard-n">500+</div><div class="wcard-l">Chantiers</div></div>
+      <div class="wcard"><div class="wcard-n">100%</div><div class="wcard-l">Satisfaction</div></div>
+      <div class="wcard"><div class="wcard-n">IRVE</div><div class="wcard-l">Certifié</div></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <footer>
-    © 2025 EGTI – Tous droits réservés
-  </footer>
-</body>
-</html>
+<section id="zone">
+  <div class="section-label">Déplacements</div>
+  <div class="section-title">Zone d'Intervention</div>
+  <p class="section-sub">Basé à Toulouse, nous intervenons dans toute la métropole et les communes environnantes.</p>
+  <div class="zone-wrap">
+    <div class="zone-map">
+      <div class="map-vis"><div class="pin"></div></div>
+      <div class="map-city">Toulouse</div>
+      <div class="map-sub">Métropole · Haute-Garonne</div>
+    </div>
+    <div>
+      <p style="font-size:.9rem;color:var(--gray);margin-bottom:1.5rem;line-height:1.7;">Nous couvrons Toulouse et un large périmètre autour de la Ville Rose.</p>
+      <div class="cities-grid">
+        <div class="ctag">Toulouse</div><div class="ctag">Blagnac</div>
+        <div class="ctag">Colomiers</div><div class="ctag">Tournefeuille</div>
+        <div class="ctag">Muret</div><div class="ctag">Ramonville</div>
+        <div class="ctag">Balma</div><div class="ctag">L'Union</div>
+        <div class="ctag">Cugnaux</div><div class="ctag">Saint-Orens</div>
+        <div class="ctag">Portet-sur-Garonne</div><div class="ctag">Et alentours…</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="avis">
+  <div class="section-label">Ils nous font confiance</div>
+  <div class="section-title">Avis Google</div>
+  <div class="google-rating-header">
+    <div>
+      <div class="google-score" id="google-score">–</div>
+      <div class="google-stars" id="google-stars">☆☆☆☆☆</div>
+      <div class="google-count" id="google-count">Chargement…</div>
+    </div>
+    <div class="google-logo">
+      <svg width="22" height="22" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+      Avis Google vérifiés
+    </div>
+  </div>
+  <div class="avis-grid" id="avis-grid">
+    <div class="avis-loading">Chargement des avis Google…</div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="section-label">Parlons de votre projet</div>
+  <div class="section-title">Nous Contacter</div>
+  <div class="contact-wrap">
+    <div>
+      <p style="font-size:.95rem;color:var(--gray-light);line-height:1.75;margin-bottom:1.5rem;">Devis gratuit.</p>
+      <div class="citem"><div class="cicon">📞</div><div><div class="clabel">Téléphone</div><div class="cval"><a href="tel:0620533259">06.20.53.32.59</a></div></div></div>
+      <div class="citem"><div class="cicon">✉️</div><div><div class="clabel">Email</div><div class="cval"><a href="/cdn-cgi/l/email-protection#b6c5d7c5c398d3d1c2dff6d1dbd7dfda98d5d9db"><span class="__cf_email__" data-cfemail="bdcedccec893d8dac9d4fddad0dcd4d193ded2d0">[email&#160;protected]</span></a></div></div></div>
+      <div class="citem"><div class="cicon">📍</div><div><div class="clabel">Zone d'intervention</div><div class="cval">Toulouse &amp; alentours</div></div></div>
+      <div class="citem"><div class="cicon">🏢</div><div><div class="clabel">SIREN</div><div class="cval">944 328 079 RCS Toulouse</div></div></div>
+    </div>
+    <div class="cform">
+      <h3>Demande de devis gratuit</h3>
+      <div id="form-success" style="display:none;background:rgba(74,222,128,.1);border:1px solid rgba(74,222,128,.3);border-radius:10px;padding:1.2rem;text-align:center;color:#4ade80;font-weight:600;margin-bottom:1rem;">✓ Demande envoyée ! Nous vous recontactons sous 24h.</div>
+      <div id="form-error" style="display:none;background:rgba(255,80,80,.1);border:1px solid rgba(255,80,80,.3);border-radius:10px;padding:1.2rem;text-align:center;color:#ff6b6b;font-size:.85rem;margin-bottom:1rem;"></div>
+      <div class="frow">
+        <div class="fg"><label>Prénom</label><input type="text" id="f_prenom" placeholder="Jean" /></div>
+        <div class="fg"><label>Nom</label><input type="text" id="f_nom" placeholder="Dupont" /></div>
+      </div>
+      <div class="fg"><label>Téléphone</label><input type="tel" id="f_tel" placeholder="06 xx xx xx xx" /></div>
+      <div class="fg"><label>Email</label><input type="email" id="f_email" placeholder="jean@email.com" /></div>
+      <div class="fg">
+        <label>Type de prestation</label>
+        <select id="f_prestation">
+          <option value="">Sélectionner…</option>
+          <option>Installation électrique</option>
+          <option>Dépannage urgent</option>
+          <option>Borne de recharge VE</option>
+          <option>Rénovation / mise aux normes</option>
+          <option>Éclairage</option>
+          <option>Électricité tertiaire</option>
+          <option>Autre</option>
+        </select>
+      </div>
+      <div class="fg"><label>Votre message</label><textarea id="f_message" placeholder="Décrivez votre projet ou problème…"></textarea></div>
+      <button type="button" class="fsub" id="submitBtn">Envoyer ma demande</button>
+      <p style="font-size:.75rem;color:var(--gray);text-align:center;margin-top:.8rem;">Champs obligatoires : Prénom, Nom, Téléphone</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="flogo">EGTI</div>
+  <p>© 2025 EGTI – Tous droits réservés · SIREN 944 328 079 RCS Toulouse</p>
+  <p>Électricité Générale Tertiaire Industriel · <a href="mailto:sasu.egti@gmail.com" style="color:var(--yellow);text-decoration:none;">sasu.egti@gmail.com</a></p>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+  /* Menu burger */
+  const toggle = document.getElementById('toggle');
+  const navlinks = document.getElementById('navlinks');
+  toggle.addEventListener('click', () => navlinks.classList.toggle('open'));
+  navlinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navlinks.classList.remove('open')));
+
+  /* Google Reviews via Places API */
+  const PLACE_ID = 'ChIJFTDV7LB4xWMRr3jDLRHAi5s';
+  const API_KEY  = 'AIzaSyBPin9Nu0UU6PooAzjSEv9WGkx2suiDzPI';
+
+  function stars(n) { return '★'.repeat(n) + '☆'.repeat(5 - n); }
+
+  function loadReviews() {
+    const proxy = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${PLACE_ID}&fields=rating,user_ratings_total,reviews&language=fr&key=${API_KEY}`;
+    fetch(proxy)
+      .then(r => r.json())
+      .then(data => {
+        const r = data.result;
+        if (!r) { showFallback('Données indisponibles.'); return; }
+        document.getElementById('google-score').textContent = r.rating ? r.rating.toFixed(1) : '–';
+        document.getElementById('google-stars').textContent = stars(Math.round(r.rating || 0));
+        document.getElementById('google-count').textContent = `${r.user_ratings_total || 0} avis Google`;
+        const reviews = (r.reviews || []).filter(rv => rv.rating >= 4 && rv.text).slice(0, 3);
+        if (!reviews.length) { showFallback('Aucun avis disponible pour le moment.'); return; }
+        document.getElementById('avis-grid').innerHTML = reviews.map(rv => `
+          <div class="avis-card">
+            <div class="stars">${stars(rv.rating)}</div>
+            <p class="avis-text">"${rv.text}"</p>
+            <div class="reviewer">
+              <div class="avi">${rv.profile_photo_url ? `<img src="${rv.profile_photo_url}" alt="" />` : rv.author_name.substring(0,2).toUpperCase()}</div>
+              <div><div class="rev-name">${rv.author_name}</div><div class="rev-loc">Avis Google vérifié</div></div>
+            </div>
+          </div>`).join('');
+      })
+      .catch(() => showFallback('Impossible de charger les avis. Consultez notre fiche Google.'));
+  }
+
+  function showFallback(msg) {
+    document.getElementById('avis-grid').innerHTML = `<p class="avis-loading">${msg}</p>`;
+  }
+
+  loadReviews();
+
+  /* EmailJS */
+  emailjs.init('zuGQb1epsAo-_ZTAZ');
+
+  document.getElementById('submitBtn').addEventListener('click', function() {
+    const prenom    = document.getElementById('f_prenom').value.trim();
+    const nom       = document.getElementById('f_nom').value.trim();
+    const telephone = document.getElementById('f_tel').value.trim();
+    const email     = document.getElementById('f_email').value.trim();
+    const prestation= document.getElementById('f_prestation').value;
+    const message   = document.getElementById('f_message').value.trim();
+    const errEl     = document.getElementById('form-error');
+    const okEl      = document.getElementById('form-success');
+    errEl.style.display = 'none'; okEl.style.display = 'none';
+    if (!prenom || !nom || !telephone) {
+      errEl.textContent = 'Merci de remplir au minimum Prénom, Nom et Téléphone.';
+      errEl.style.display = 'block'; return;
+    }
+    const btn = this;
+    btn.textContent = 'Envoi en cours…'; btn.disabled = true; btn.style.opacity = '.7';
+    emailjs.send('service_wz5pa87', 'template_y9nk97c', { prenom, nom, telephone, email, prestation, message })
+      .then(() => {
+        okEl.style.display = 'block';
+        btn.textContent = '✓ Envoyé !'; btn.style.background = '#4ade80'; btn.style.opacity = '1';
+        ['f_prenom','f_nom','f_tel','f_email','f_message'].forEach(id => document.getElementById(id).value = '');
+        document.getElementById('f_prestation').selectedIndex = 0;
+      }).catch(() => {
