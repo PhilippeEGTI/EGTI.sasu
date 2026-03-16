@@ -185,7 +185,7 @@
       <a href="#services" class="btn btn-o">Nos services →</a>
     </div>
     <div class="hero-stats">
-      <div><div class="stat-n">10+</div><div class="stat-l">Ans d'expérience</div></div>
+      <div><div class="stat-n">20+</div><div class="stat-l">Ans d'expérience</div></div>
       <div><div class="stat-n">100%</div><div class="stat-l">Certifié &amp; Assuré</div></div>
       <div><div class="stat-n">IRVE</div><div class="stat-l">Installateur agréé</div></div>
     </div>
@@ -195,14 +195,14 @@
 <section id="bornes">
   <div class="section-label">Mobilité électrique</div>
   <div class="section-title">Bornes de Recharge<br>Voiture Électrique</div>
-  <p class="section-sub">Partenaire officiel Legrand, installateur certifié IRVE. Rechargez chez vous ou dans votre entreprise.</p>
+  <p class="section-sub">Installateur certifié IRVE. Bornes Legrand. Rechargez chez vous ou dans votre entreprise.</p>
   <p style="font-family:var(--font-d);font-size:1.6rem;color:var(--yellow);letter-spacing:.08em;margin-top:.8rem;opacity:.85;">L'énergie de vos trajets</p>
   <div class="bornes-intro">
     <div class="bornes-text">
       <p>EGTI est votre spécialiste pour l'installation de bornes de recharge à domicile et en entreprise sur Toulouse et ses alentours.</p>
       <p>En tant qu'installateur agréé IRVE, nous garantissons une installation conforme et sécurisée, éligible aux aides de l'État.</p>
-      <div class="irve-badge">✓ Installateur Agréé IRVE · Legrand Partenaire</div>
-      <div class="legrand-badge">Matériel certifié <strong style="color:#e63329;margin-left:.3rem;">LEGRAND®</strong></div>
+      <div class="irve-badge">✓ Installateur Agréé IRVE</div>
+
     </div>
     <div class="bornes-cards">
       <div class="borne-card">
@@ -247,7 +247,7 @@
       <li><div class="chk">✓</div><div><h4>Expertise IRVE</h4><p>Installateur certifié bornes de recharge, éligible aux programmes d'aides nationaux.</p></div></li>
     </ul>
     <div class="why-cards">
-      <div class="wcard"><div class="wcard-n">10+</div><div class="wcard-l">Ans d'exp.</div></div>
+      <div class="wcard"><div class="wcard-n">20+</div><div class="wcard-l">Ans d'exp.</div></div>
       <div class="wcard"><div class="wcard-n">500+</div><div class="wcard-l">Chantiers</div></div>
       <div class="wcard"><div class="wcard-n">100%</div><div class="wcard-l">Satisfaction</div></div>
       <div class="wcard"><div class="wcard-n">IRVE</div><div class="wcard-l">Certifié</div></div>
@@ -397,7 +397,7 @@
   <div style="max-width:520px;margin:3.5rem auto 0;text-align:center;">
       <p style="font-size:.95rem;color:var(--gray-light);line-height:1.75;margin-bottom:1.5rem;">Devis gratuit.</p>
       <div class="citem" style="justify-content:center;"><div class="cicon">📞</div><div><div class="clabel">Téléphone</div><div class="cval"><a href="tel:0620533259">06.20.53.32.59</a></div></div></div>
-      <div class="citem" style="justify-content:center;"><div class="cicon">✉️</div><div><div class="clabel">Email</div><div class="cval"><a id="email-link" href="#"><span class="__cf_email__" data-cfemail="15667466603b7072617c557278747c793b767a78">[email&#160;protected]</span></a></div></div></div>
+      <div class="citem" style="justify-content:center;"><div class="cicon">✉️</div><div><div class="clabel">Email</div><div class="cval"><a id="email-link" href="#">sasu.egti@gmail.com</a></div></div></div>
       <div class="citem" style="justify-content:center;"><div class="cicon">📍</div><div><div class="clabel">Zone d'intervention</div><div class="cval">Toulouse &amp; alentours</div></div></div>
       <div class="citem" style="justify-content:center;"><div class="cicon">🏢</div><div><div class="clabel">SIREN</div><div class="cval">944 328 079 RCS Toulouse</div></div></div>
   </div>
@@ -406,15 +406,17 @@
 <footer>
   <div class="flogo">EGTI</div>
   <p>© 2025 EGTI – Tous droits réservés · SIREN 944 328 079 RCS Toulouse</p>
-  <p>Électricité Générale Tertiaire Industriel · <a href="/cdn-cgi/l/email-protection#35465446401b5052415c755258545c591b565a58" style="color:var(--yellow);text-decoration:none;"><span class="__cf_email__" data-cfemail="ee9d8f9d9bc08b899a87ae89838f8782c08d8183">[email&#160;protected]</span></a></p>
+  <p>Électricité Générale Tertiaire Industriel · <a id="footer-email" href="#" style="color:var(--yellow);text-decoration:none;">sasu.egti@gmail.com</a></p>
 </footer>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
-  /* Fix email link */
+  /* Fix email links */
   const e = 'sasu.egti' + '@' + 'gmail.com';
   const el = document.getElementById('email-link');
+  const fel = document.getElementById('footer-email');
   if(el){ el.href = 'mailto:' + e; el.textContent = e; }
+  if(fel){ fel.href = 'mailto:' + e; fel.textContent = e; }
 
   /* Menu burger */
   const toggle = document.getElementById('toggle');
