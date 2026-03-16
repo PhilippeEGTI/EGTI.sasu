@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>EGTI – Électricien professionnel à Toulouse</title>
+  <link rel="icon" type="image/png" href="Logo_noir.png" />
+  <link rel="apple-touch-icon" href="Logo_noir.png" />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -397,7 +399,7 @@
   <div style="max-width:520px;margin:3.5rem auto 0;text-align:center;">
       <p style="font-size:.95rem;color:var(--gray-light);line-height:1.75;margin-bottom:1.5rem;">Devis gratuit.</p>
       <div class="citem" style="justify-content:center;"><div class="cicon">📞</div><div><div class="clabel">Téléphone</div><div class="cval"><a href="tel:0620533259">06.20.53.32.59</a></div></div></div>
-      <div class="citem" style="justify-content:center;"><div class="cicon">✉️</div><div><div class="clabel">Email</div><div class="cval"><a id="email-link" href="#">sasu.egti@gmail.com</a></div></div></div>
+      <div class="citem" style="justify-content:center;"><div class="cicon">✉️</div><div><div class="clabel">Email</div><div class="cval"><a id="email-link" href="#"><span class="__cf_email__" data-cfemail="01726072742f6466756841666c60686d2f626e6c">[email&#160;protected]</span></a></div></div></div>
       <div class="citem" style="justify-content:center;"><div class="cicon">📍</div><div><div class="clabel">Zone d'intervention</div><div class="cval">Toulouse &amp; alentours</div></div></div>
       <div class="citem" style="justify-content:center;"><div class="cicon">🏢</div><div><div class="clabel">SIREN</div><div class="cval">944 328 079 RCS Toulouse</div></div></div>
   </div>
@@ -406,10 +408,10 @@
 <footer>
   <div class="flogo">EGTI</div>
   <p>© 2025 EGTI – Tous droits réservés · SIREN 944 328 079 RCS Toulouse</p>
-  <p>Électricité Générale Tertiaire Industriel · <a id="footer-email" href="#" style="color:var(--yellow);text-decoration:none;">sasu.egti@gmail.com</a></p>
+  <p>Électricité Générale Tertiaire Industriel · <a id="footer-email" href="#" style="color:var(--yellow);text-decoration:none;"><span class="__cf_email__" data-cfemail="2655475553084341524f66414b474f4a0845494b">[email&#160;protected]</span></a></p>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
   /* Fix email links */
   const e = 'sasu.egti' + '@' + 'gmail.com';
@@ -479,8 +481,4 @@
     const email     = document.getElementById('f_email').value.trim();
     const prestation= document.getElementById('f_prestation').value;
     const message   = document.getElementById('f_message').value.trim();
-    const errEl     = document.getElementById('form-error');
-    const okEl      = document.getElementById('form-success');
-    errEl.style.display = 'none'; okEl.style.display = 'none';
-    if (!prenom || !nom || !telephone) {
-      errEl.textContent = 'Merci de remplir au minimum Prénom, Nom et Téléphone.
+    const errEl
