@@ -25,7 +25,7 @@
     .nav-toggle span { display: block; width: 24px; height: 2px; background: var(--white); border-radius: 2px; }
     .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 9rem 3rem 5rem; position: relative; overflow: hidden; }
     .hero-bg { position: absolute; inset: 0; z-index: 0; background: radial-gradient(ellipse 55% 65% at 85% 50%, rgba(246,216,0,.07) 0%, transparent 65%), radial-gradient(ellipse 35% 70% at 5% 90%, rgba(246,216,0,.04) 0%, transparent 55%); }
-    .hero-bolt { position: absolute; right: 7%; top: 50%; transform: translateY(-50%); width: 4px; height: 58vh; background: var(--yellow); opacity: .12; clip-path: polygon(40% 0%,100% 33%,55% 33%,100% 66%,50% 66%,100% 100%,0% 55%,45% 55%,0% 28%,45% 28%); }
+    .hero-bolt { position: absolute; right: 3%; top: 50%; transform: translateY(-50%); width: 120px; height: 300px; opacity: .9; }
     .hero-content { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; text-align: center; display: flex; flex-direction: column; align-items: center; }
     .hero-badge { display: inline-flex; align-items: center; gap: .5rem; background: var(--yellow-dim); border: 1px solid var(--yellow-border); color: var(--yellow); font-size: .76rem; font-weight: 600; letter-spacing: .15em; text-transform: uppercase; padding: .38rem 1rem; border-radius: 100px; margin-bottom: 1.8rem; }
     .hero-badge i { display:inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--yellow); animation: blink 2s infinite; }
@@ -86,12 +86,8 @@
     #zone { background: var(--black); }
     .zone-wrap { display: grid; grid-template-columns: 1fr 1.1fr; gap: 4rem; align-items: start; margin-top: 3.5rem; }
     .zone-map { background: var(--dark2); border: 1px solid var(--yellow-border); border-radius: var(--radius); padding: 2rem; }
-    .map-vis { background: var(--dark3); border-radius: 10px; height: 220px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; position: relative; overflow: hidden; }
-    .map-vis::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 50% 50%, rgba(246,216,0,.08) 0%, transparent 65%); }
-    .pin { width: 14px; height: 14px; background: var(--yellow); border-radius: 50%; position: relative; z-index: 1; animation: pinPulse 2.5s infinite; }
-    .pin::after { content: ''; position: absolute; top: 50%; left: 50%; width: 60px; height: 60px; border: 2px solid var(--yellow); border-radius: 50%; transform: translate(-50%,-50%); opacity: 0; animation: ripple 2.5s infinite; }
-    @keyframes pinPulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.25)} }
-    @keyframes ripple { 0%{opacity:.5;transform:translate(-50%,-50%) scale(.3)} 100%{opacity:0;transform:translate(-50%,-50%) scale(2.8)} }
+    .map-vis { border-radius: 10px; height: 260px; overflow: hidden; margin-bottom: 1.5rem; border: 1px solid var(--yellow-border); background: #0f1a2e; position: relative; }
+    .map-vis svg { width: 100%; height: 100%; }
     .map-city { font-family: var(--font-d); font-size: 1.8rem; color: var(--yellow); }
     .map-sub { font-size: .82rem; color: var(--gray); margin-top: .2rem; }
     .cities-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .7rem; }
@@ -169,11 +165,21 @@
 
 <section id="accueil" class="hero">
   <div class="hero-bg"></div>
-  <div class="hero-bolt"></div>
+  <div class="hero-bolt">
+    <svg viewBox="0 0 120 300" xmlns="http://www.w3.org/2000/svg" width="120" height="300">
+      <!-- Ombre 3D -->
+      <polygon points="72,0 110,0 58,148 110,148 28,300 30,300 82,155 32,155" fill="#b8960a" opacity="0.7"/>
+      <!-- Corps principal -->
+      <polygon points="60,0 105,0 52,142 100,142 18,300 72,152 24,152" fill="#F6D800"/>
+      <!-- Reflet clair -->
+      <polygon points="60,0 75,0 38,142 52,142" fill="#ffe94d" opacity="0.6"/>
+    </svg>
+  </div>
   <div class="hero-content">
     <div class="hero-badge"><i></i>Électricien certifié – Toulouse</div>
     <h1>ÉLECTRICITÉ<span>GÉNÉRALE TERTIAIRE</span>INDUSTRIEL</h1>
     <p class="hero-sub">Installation, rénovation, dépannage et bornes de recharge pour particuliers et professionnels sur Toulouse et ses alentours.</p>
+    <p style="font-family:var(--font-d);font-size:1.8rem;color:var(--yellow);letter-spacing:.08em;margin-bottom:2.5rem;opacity:.85;">Éclaire vos projets</p>
     <div class="hero-actions">
       <a href="#contact" class="btn btn-y">Demander un devis</a>
       <a href="#services" class="btn btn-o">Nos services →</a>
@@ -190,6 +196,7 @@
   <div class="section-label">Mobilité électrique</div>
   <div class="section-title">Bornes de Recharge<br>Voiture Électrique</div>
   <p class="section-sub">Partenaire officiel Legrand, installateur certifié IRVE. Rechargez chez vous ou dans votre entreprise.</p>
+  <p style="font-family:var(--font-d);font-size:1.6rem;color:var(--yellow);letter-spacing:.08em;margin-top:.8rem;opacity:.85;">L'énergie de vos trajets</p>
   <div class="bornes-intro">
     <div class="bornes-text">
       <p>EGTI est votre spécialiste pour l'installation de bornes de recharge à domicile et en entreprise sur Toulouse et ses alentours.</p>
@@ -254,7 +261,61 @@
   <p class="section-sub">Basé à Toulouse, nous intervenons dans toute la métropole et les communes environnantes.</p>
   <div class="zone-wrap">
     <div class="zone-map">
-      <div class="map-vis"><div class="pin"></div></div>
+      <div class="map-vis">
+        <svg viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg">
+          <!-- Fond -->
+          <rect width="400" height="260" fill="#0f1a2e"/>
+          <!-- Grille de fond -->
+          <line x1="0" y1="50" x2="400" y2="50" stroke="#1a2a45" stroke-width="1"/>
+          <line x1="0" y1="100" x2="400" y2="100" stroke="#1a2a45" stroke-width="1"/>
+          <line x1="0" y1="150" x2="400" y2="150" stroke="#1a2a45" stroke-width="1"/>
+          <line x1="0" y1="200" x2="400" y2="200" stroke="#1a2a45" stroke-width="1"/>
+          <line x1="80" y1="0" x2="80" y2="260" stroke="#1a2a45" stroke-width="1"/>
+          <line x1="160" y1="0" x2="160" y2="260" stroke="#1a2a45" stroke-width="1"/>
+          <line x1="240" y1="0" x2="240" y2="260" stroke="#1a2a45" stroke-width="1"/>
+          <line x1="320" y1="0" x2="320" y2="260" stroke="#1a2a45" stroke-width="1"/>
+          <!-- Garonne -->
+          <path d="M 60 40 Q 120 80 180 120 Q 220 150 260 180 Q 300 200 360 220" stroke="#1e3a5f" stroke-width="18" fill="none" stroke-linecap="round"/>
+          <path d="M 60 40 Q 120 80 180 120 Q 220 150 260 180 Q 300 200 360 220" stroke="#2a4f7a" stroke-width="10" fill="none" stroke-linecap="round"/>
+          <!-- Routes principales -->
+          <line x1="200" y1="0" x2="200" y2="260" stroke="#1e3060" stroke-width="4"/>
+          <line x1="0" y1="130" x2="400" y2="130" stroke="#1e3060" stroke-width="4"/>
+          <line x1="50" y1="0" x2="350" y2="260" stroke="#1a2a50" stroke-width="2"/>
+          <line x1="350" y1="0" x2="50" y2="260" stroke="#1a2a50" stroke-width="2"/>
+          <!-- Périphérique (cercle) -->
+          <circle cx="200" cy="130" r="70" stroke="#253a60" stroke-width="3" fill="none" stroke-dasharray="8 4"/>
+          <!-- Blocs ville -->
+          <rect x="170" y="100" width="18" height="12" rx="2" fill="#1e3060" opacity="0.8"/>
+          <rect x="195" y="105" width="14" height="10" rx="2" fill="#1e3060" opacity="0.8"/>
+          <rect x="215" y="98" width="16" height="14" rx="2" fill="#1e3060" opacity="0.8"/>
+          <rect x="180" y="118" width="12" height="10" rx="2" fill="#1e3060" opacity="0.8"/>
+          <rect x="200" y="120" width="20" height="8" rx="2" fill="#1e3060" opacity="0.8"/>
+          <!-- Zone d'intervention (cercle) -->
+          <circle cx="200" cy="130" r="90" stroke="rgba(246,216,0,0.15)" stroke-width="1.5" fill="rgba(246,216,0,0.03)" stroke-dasharray="5 3"/>
+          <!-- Pin EGTI -->
+          <circle cx="200" cy="130" r="14" fill="rgba(246,216,0,0.2)">
+            <animate attributeName="r" values="14;20;14" dur="2s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values="0.2;0.05;0.2" dur="2s" repeatCount="indefinite"/>
+          </circle>
+          <circle cx="200" cy="130" r="8" fill="#F6D800"/>
+          <circle cx="200" cy="130" r="4" fill="#0f1a2e"/>
+          <!-- Label Toulouse -->
+          <text x="200" y="170" text-anchor="middle" fill="#F6D800" font-size="13" font-weight="bold" font-family="sans-serif">TOULOUSE</text>
+          <!-- Villes alentours -->
+          <circle cx="120" cy="80" r="3" fill="#3a5a80"/>
+          <text x="120" y="74" text-anchor="middle" fill="#6a8aa8" font-size="8" font-family="sans-serif">Blagnac</text>
+          <circle cx="100" cy="145" r="3" fill="#3a5a80"/>
+          <text x="100" y="139" text-anchor="middle" fill="#6a8aa8" font-size="8" font-family="sans-serif">Colomiers</text>
+          <circle cx="290" cy="90" r="3" fill="#3a5a80"/>
+          <text x="290" y="84" text-anchor="middle" fill="#6a8aa8" font-size="8" font-family="sans-serif">Balma</text>
+          <circle cx="280" cy="175" r="3" fill="#3a5a80"/>
+          <text x="280" y="169" text-anchor="middle" fill="#6a8aa8" font-size="8" font-family="sans-serif">Ramonville</text>
+          <circle cx="130" cy="200" r="3" fill="#3a5a80"/>
+          <text x="130" y="194" text-anchor="middle" fill="#6a8aa8" font-size="8" font-family="sans-serif">Muret</text>
+          <circle cx="310" cy="150" r="3" fill="#3a5a80"/>
+          <text x="310" y="144" text-anchor="middle" fill="#6a8aa8" font-size="8" font-family="sans-serif">Saint-Orens</text>
+        </svg>
+      </div>
       <div class="map-city">Toulouse</div>
       <div class="map-sub">Métropole · Haute-Garonne</div>
     </div>
@@ -277,58 +338,68 @@
   <div class="section-title">Avis Google</div>
   <div class="google-rating-header">
     <div>
-      <div class="google-score" id="google-score">–</div>
-      <div class="google-stars" id="google-stars">☆☆☆☆☆</div>
-      <div class="google-count" id="google-count">Chargement…</div>
+      <div class="google-score">4,9</div>
+      <div class="google-stars">★★★★★</div>
+      <div class="google-count">8 avis Google</div>
     </div>
     <div class="google-logo">
       <svg width="22" height="22" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
       Avis Google vérifiés
     </div>
   </div>
-  <div class="avis-grid" id="avis-grid">
-    <div class="avis-loading">Chargement des avis Google…</div>
+  <div class="avis-grid">
+    <div class="avis-card">
+      <div class="stars">★★★★★</div>
+      <p class="avis-text">"Super boulot très propre très satisfaisant avec des prix très arrangeants."</p>
+      <div class="reviewer"><div class="avi">AA</div><div><div class="rev-name">Anne-Marie Arjonilla</div><div class="rev-loc">il y a 4 jours · Avis Google vérifié</div></div></div>
+    </div>
+    <div class="avis-card">
+      <div class="stars">★★★★★</div>
+      <p class="avis-text">"Technique et électricien super pro, vraiment au top !"</p>
+      <div class="reviewer"><div class="avi">VG</div><div><div class="rev-name">Vanessa Gnaly</div><div class="rev-loc">il y a 4 jours · Avis Google vérifié</div></div></div>
+    </div>
+    <div class="avis-card">
+      <div class="stars">★★★★★</div>
+      <p class="avis-text">"Le top du top ! Très réactif, professionnel, je recommande sincèrement !"</p>
+      <div class="reviewer"><div class="avi">CP</div><div><div class="rev-name">Cyril Pinto</div><div class="rev-loc">il y a 2 semaines · Avis Google vérifié</div></div></div>
+    </div>
+    <div class="avis-card">
+      <div class="stars">★★★★★</div>
+      <p class="avis-text">"Intervention impeccable réalisée par un électricien sérieux et professionnel. Le travail est propre, soigné et conforme à ce qui avait été annoncé. Ponctuel, de bon conseil. Je recommande sans hésiter."</p>
+      <div class="reviewer"><div class="avi">LJ</div><div><div class="rev-name">Laurence Jurado</div><div class="rev-loc">il y a 3 semaines · Avis Google vérifié</div></div></div>
+    </div>
+    <div class="avis-card">
+      <div class="stars">★★★★★</div>
+      <p class="avis-text">"Sérieux, professionnalisme, pose rapide de la borne électrique. D'autres activités planifiées avec cette société sur 2026."</p>
+      <div class="reviewer"><div class="avi">MR</div><div><div class="rev-name">MicheeRose</div><div class="rev-loc">il y a 3 semaines · Avis Google vérifié</div></div></div>
+    </div>
+    <div class="avis-card">
+      <div class="stars">★★★★★</div>
+      <p class="avis-text">"Satisfait, très bon travail et sympathique, merci !"</p>
+      <div class="reviewer"><div class="avi">CD</div><div><div class="rev-name">Charly Dasilva</div><div class="rev-loc">il y a 3 semaines · Avis Google vérifié</div></div></div>
+    </div>
+    <div class="avis-card">
+      <div class="stars">★★★★☆</div>
+      <p class="avis-text">"Bon conseil, ponctuel et prix concurrentiel. À conseiller."</p>
+      <div class="reviewer"><div class="avi">CM</div><div><div class="rev-name">Crespos Magalie</div><div class="rev-loc">il y a 3 semaines · Avis Google vérifié</div></div></div>
+    </div>
+    <div class="avis-card">
+      <div class="stars">★★★★★</div>
+      <p class="avis-text">"Satisfaite de la pose de notre vidéo surveillance. De très bon conseil, très professionnel."</p>
+      <div class="reviewer"><div class="avi">CN</div><div><div class="rev-name">Claudine Nunes</div><div class="rev-loc">il y a 6 mois · Avis Google vérifié</div></div></div>
+    </div>
   </div>
 </section>
 
 <section id="contact">
   <div class="section-label">Parlons de votre projet</div>
   <div class="section-title">Nous Contacter</div>
-  <div class="contact-wrap">
-    <div>
+  <div style="max-width:520px;margin:3.5rem auto 0;text-align:center;">
       <p style="font-size:.95rem;color:var(--gray-light);line-height:1.75;margin-bottom:1.5rem;">Devis gratuit.</p>
-      <div class="citem"><div class="cicon">📞</div><div><div class="clabel">Téléphone</div><div class="cval"><a href="tel:0620533259">06.20.53.32.59</a></div></div></div>
-      <div class="citem"><div class="cicon">✉️</div><div><div class="clabel">Email</div><div class="cval"><a id="email-link" href="#">sasu.egti@gmail.com</a></div></div></div>
-      <div class="citem"><div class="cicon">📍</div><div><div class="clabel">Zone d'intervention</div><div class="cval">Toulouse &amp; alentours</div></div></div>
-      <div class="citem"><div class="cicon">🏢</div><div><div class="clabel">SIREN</div><div class="cval">944 328 079 RCS Toulouse</div></div></div>
-    </div>
-    <div class="cform">
-      <h3>Demande de devis gratuit</h3>
-      <div id="form-success" style="display:none;background:rgba(74,222,128,.1);border:1px solid rgba(74,222,128,.3);border-radius:10px;padding:1.2rem;text-align:center;color:#4ade80;font-weight:600;margin-bottom:1rem;">✓ Demande envoyée ! Nous vous recontactons sous 24h.</div>
-      <div id="form-error" style="display:none;background:rgba(255,80,80,.1);border:1px solid rgba(255,80,80,.3);border-radius:10px;padding:1.2rem;text-align:center;color:#ff6b6b;font-size:.85rem;margin-bottom:1rem;"></div>
-      <div class="frow">
-        <div class="fg"><label>Prénom</label><input type="text" id="f_prenom" placeholder="Jean" /></div>
-        <div class="fg"><label>Nom</label><input type="text" id="f_nom" placeholder="Dupont" /></div>
-      </div>
-      <div class="fg"><label>Téléphone</label><input type="tel" id="f_tel" placeholder="06 xx xx xx xx" /></div>
-      <div class="fg"><label>Email</label><input type="email" id="f_email" placeholder="jean@email.com" /></div>
-      <div class="fg">
-        <label>Type de prestation</label>
-        <select id="f_prestation">
-          <option value="">Sélectionner…</option>
-          <option>Installation électrique</option>
-          <option>Dépannage urgent</option>
-          <option>Borne de recharge VE</option>
-          <option>Rénovation / mise aux normes</option>
-          <option>Éclairage</option>
-          <option>Électricité tertiaire</option>
-          <option>Autre</option>
-        </select>
-      </div>
-      <div class="fg"><label>Votre message</label><textarea id="f_message" placeholder="Décrivez votre projet ou problème…"></textarea></div>
-      <button type="button" class="fsub" id="submitBtn">Envoyer ma demande</button>
-      <p style="font-size:.75rem;color:var(--gray);text-align:center;margin-top:.8rem;">Champs obligatoires : Prénom, Nom, Téléphone</p>
-    </div>
+      <div class="citem" style="justify-content:center;"><div class="cicon">📞</div><div><div class="clabel">Téléphone</div><div class="cval"><a href="tel:0620533259">06.20.53.32.59</a></div></div></div>
+      <div class="citem" style="justify-content:center;"><div class="cicon">✉️</div><div><div class="clabel">Email</div><div class="cval"><a id="email-link" href="#"><span class="__cf_email__" data-cfemail="15667466603b7072617c557278747c793b767a78">[email&#160;protected]</span></a></div></div></div>
+      <div class="citem" style="justify-content:center;"><div class="cicon">📍</div><div><div class="clabel">Zone d'intervention</div><div class="cval">Toulouse &amp; alentours</div></div></div>
+      <div class="citem" style="justify-content:center;"><div class="cicon">🏢</div><div><div class="clabel">SIREN</div><div class="cval">944 328 079 RCS Toulouse</div></div></div>
   </div>
 </section>
 
@@ -338,7 +409,7 @@
   <p>Électricité Générale Tertiaire Industriel · <a href="/cdn-cgi/l/email-protection#35465446401b5052415c755258545c591b565a58" style="color:var(--yellow);text-decoration:none;"><span class="__cf_email__" data-cfemail="ee9d8f9d9bc08b899a87ae89838f8782c08d8183">[email&#160;protected]</span></a></p>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
   /* Fix email link */
   const e = 'sasu.egti' + '@' + 'gmail.com';
@@ -410,12 +481,4 @@
     const okEl      = document.getElementById('form-success');
     errEl.style.display = 'none'; okEl.style.display = 'none';
     if (!prenom || !nom || !telephone) {
-      errEl.textContent = 'Merci de remplir au minimum Prénom, Nom et Téléphone.';
-      errEl.style.display = 'block'; return;
-    }
-    const btn = this;
-    btn.textContent = 'Envoi en cours…'; btn.disabled = true; btn.style.opacity = '.7';
-    emailjs.send('service_wz5pa87', 'template_y9nk97c', { prenom, nom, telephone, email, prestation, message })
-      .then(() => {
-        okEl.style.display = 'block';
-        btn.textContent = '✓ Envoyé !'; btn.style.background =
+      errEl.textContent = 'Merci de remplir au minimum Prénom, Nom et Téléphone.
