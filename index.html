@@ -456,41 +456,32 @@
   toggle.addEventListener('click', () => navlinks.classList.toggle('open'));
   navlinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navlinks.classList.remove('open')));
 
-  function loadReviews() {
-    const script = document.createElement('script');
-    script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBPin9Nu0UU6PooAzjSEv9WGkx2suiDzPI&libraries=places&callback=initPlaces';
-    script.async = true;
-    document.head.appendChild(script);
-  }
+  const PROXY_URL = 'https://script.google.com/macros/s/AKfycbwKGUnuziB1WHqVFdqxkOlESTZzjaY8x-j3Gjq-gOYb6LuyXxOVi7F9nCaagIs8R5pXcw/exec';
 
   function stars(n) { return '★'.repeat(n) + '☆'.repeat(5 - n); }
 
-  window.initPlaces = function() {
-    const dummy = document.createElement('div');
-    document.body.appendChild(dummy);
-    const svc = new google.maps.places.PlacesService(dummy);
-    svc.getDetails({
-      placeId: 'ChIJFTDV7LB4xWMRr3jDLRHAi5s',
-      fields: ['rating','user_ratings_total','reviews'],
-      language: 'fr'
-    }, function(place, status) {
-      if (status !== 'OK' || !place) return;
-      document.querySelector('.google-score').textContent = place.rating ? place.rating.toFixed(1) : '–';
-      document.querySelector('.google-stars').textContent = stars(Math.round(place.rating || 0));
-      document.querySelector('.google-count').textContent = (place.user_ratings_total || 0) + ' avis Google';
-      const reviews = (place.reviews || []).filter(r => r.rating >= 4 && r.text).slice(0, 3);
-      if (!reviews.length) return;
-      document.querySelector('.avis-grid').innerHTML = reviews.map(r => `
-        <div class="avis-card">
-          <div class="stars">${stars(r.rating)}</div>
-          <p class="avis-text">"${r.text}"</p>
-          <div class="reviewer">
-            <div class="avi">${r.profile_photo_url ? '<img src="'+r.profile_photo_url+'" alt="" />' : r.author_name.substring(0,2).toUpperCase()}</div>
-            <div><div class="rev-name">${r.author_name}</div><div class="rev-loc">Avis Google vérifié</div></div>
-          </div>
-        </div>`).join('');
-    });
-  };
+  function loadReviews() {
+    fetch(PROXY_URL)
+      .then(r => r.json())
+      .then(place => {
+        if (!place || !place.reviews) return;
+        document.querySelector('.google-score').textContent = place.rating ? place.rating.toFixed(1) : '–';
+        document.querySelector('.google-stars').textContent = stars(Math.round(place.rating || 0));
+        document.querySelector('.google-count').textContent = (place.user_ratings_total || 0) + ' avis Google';
+        const reviews = place.reviews.filter(r => r.rating >= 4 && r.text).slice(0, 6);
+        if (!reviews.length) return;
+        document.querySelector('.avis-grid').innerHTML = reviews.map(r => `
+          <div class="avis-card">
+            <div class="stars">${stars(r.rating)}</div>
+            <p class="avis-text">"${r.text}"</p>
+            <div class="reviewer">
+              <div class="avi">${r.profile_photo_url ? '<img src="'+r.profile_photo_url+'" alt="" />' : r.author_name.substring(0,2).toUpperCase()}</div>
+              <div><div class="rev-name">${r.author_name}</div><div class="rev-loc">Avis Google vérifié</div></div>
+            </div>
+          </div>`).join('');
+      })
+      .catch(() => console.warn('Impossible de charger les avis Google.'));
+  }
 
   loadReviews();
 
