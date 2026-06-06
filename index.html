@@ -101,8 +101,9 @@
     .google-stars { color: var(--yellow); font-size: 1.4rem; letter-spacing: .05em; }
     .google-count { font-size: .85rem; color: var(--gray); margin-top: .3rem; }
     .google-logo { display: flex; align-items: center; gap: .6rem; font-size: .82rem; color: var(--gray); border-left: 1px solid rgba(255,255,255,.1); padding-left: 2rem; }
-    .avis-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 1.4rem; }
-    .avis-card { background: var(--dark2); border: 1px solid rgba(255,255,255,.06); border-radius: var(--radius); padding: 2rem; }
+    .avis-carousel { overflow: hidden; position: relative; }
+    .avis-grid { display: flex; gap: 1.4rem; transition: transform .5s cubic-bezier(.4,0,.2,1); will-change: transform; }
+    .avis-card { background: var(--dark2); border: 1px solid rgba(255,255,255,.06); border-radius: var(--radius); padding: 2rem; min-width: 320px; max-width: 320px; flex-shrink: 0; }
     .stars { color: var(--yellow); font-size: .95rem; margin-bottom: .8rem; }
     .avis-text { font-size: .9rem; color: var(--gray-light); line-height: 1.72; margin-bottom: 1.5rem; font-style: italic; }
     .reviewer { display: flex; align-items: center; gap: .8rem; }
@@ -110,7 +111,13 @@
     .avi img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
     .rev-name { font-size: .87rem; font-weight: 600; }
     .rev-loc { font-size: .76rem; color: var(--gray); margin-top: .1rem; }
-    .avis-loading { text-align: center; color: var(--gray); padding: 2rem; font-size: .9rem; grid-column: 1/-1; }
+    .avis-loading { text-align: center; color: var(--gray); padding: 2rem; font-size: .9rem; }
+    .avis-dots { display: flex; justify-content: center; gap: .5rem; margin-top: 1.8rem; }
+    .avis-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,.2); cursor: pointer; transition: background .3s, transform .3s; }
+    .avis-dot.active { background: var(--yellow); transform: scale(1.3); }
+    .avis-nav { display: flex; justify-content: center; gap: 1rem; margin-top: 1.2rem; }
+    .avis-btn { background: var(--dark2); border: 1px solid rgba(255,255,255,.1); color: var(--white); width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 1.1rem; display: flex; align-items: center; justify-content: center; transition: border-color .2s, background .2s; }
+    .avis-btn:hover { border-color: var(--yellow); background: var(--yellow-dim); }
     #contact { background: var(--black); }
     .contact-wrap { display: grid; grid-template-columns: 1fr 1.1fr; gap: 4rem; margin-top: 3.5rem; }
     .citem { display: flex; gap: 1.2rem; align-items: flex-start; padding: 1.2rem 0; border-bottom: 1px solid rgba(255,255,255,.06); }
@@ -393,6 +400,7 @@
       Avis Google vérifiés
     </div>
   </div>
+  <div class="avis-carousel">
   <div class="avis-grid">
     <div class="avis-card">
       <div class="stars">★★★★★</div>
@@ -434,6 +442,12 @@
       <p class="avis-text">"Satisfaite de la pose de notre vidéo surveillance. De très bon conseil, très professionnel."</p>
       <div class="reviewer"><div class="avi">CN</div><div><div class="rev-name">Claudine Nunes</div><div class="rev-loc">Avis Google vérifié</div></div></div>
     </div>
+  </div>
+  </div>
+  <div class="avis-dots" id="avisDots"></div>
+  <div class="avis-nav">
+    <button class="avis-btn" id="avisPrev">&#8592;</button>
+    <button class="avis-btn" id="avisNext">&#8594;</button>
   </div>
 </section>
 
@@ -487,11 +501,58 @@
               <div><div class="rev-name">${r.name}</div><div class="rev-loc">Avis Google vérifié</div></div>
             </div>
           </div>`).join('');
+        initCarousel();
       })
       .catch(() => console.warn('Impossible de charger les avis Google.'));
   }
 
   loadReviews();
+
+  // Carousel avis
+  function initCarousel() {
+    const grid = document.querySelector('.avis-grid');
+    const dotsEl = document.getElementById('avisDots');
+    const cards = grid.querySelectorAll('.avis-card');
+    if (!cards.length) return;
+    let current = 0;
+    let autoTimer;
+
+    function getVisible() { return window.innerWidth < 700 ? 1 : window.innerWidth < 1100 ? 2 : 3; }
+
+    function buildDots() {
+      dotsEl.innerHTML = '';
+      const total = Math.ceil(cards.length / getVisible());
+      for (let i = 0; i < total; i++) {
+        const d = document.createElement('div');
+        d.className = 'avis-dot' + (i === current ? ' active' : '');
+        d.addEventListener('click', () => goTo(i));
+        dotsEl.appendChild(d);
+      }
+    }
+
+    function goTo(i) {
+      const visible = getVisible();
+      const total = Math.ceil(cards.length / visible);
+      current = (i + total) % total;
+      const cardW = cards[0].offsetWidth + 22;
+      grid.style.transform = `translateX(-${current * visible * cardW}px)`;
+      buildDots();
+      resetTimer();
+    }
+
+    function resetTimer() {
+      clearInterval(autoTimer);
+      autoTimer = setInterval(() => goTo(current + 1), 4000);
+    }
+
+    document.getElementById('avisPrev').addEventListener('click', () => goTo(current - 1));
+    document.getElementById('avisNext').addEventListener('click', () => goTo(current + 1));
+    window.addEventListener('resize', () => { current = 0; goTo(0); });
+
+    buildDots();
+    resetTimer();
+  }
+  initCarousel();
 
   // Compteurs animés
   const counters = document.querySelectorAll('.stat-n[data-count]');
