@@ -546,7 +546,7 @@
 
     function resetTimer() {
       clearInterval(autoTimer);
-      autoTimer = setInterval(() => show(current + 1), 4000);
+      autoTimer = setInterval(() => show(current + 1), 15000);
     }
 
     document.getElementById('avisPrev').addEventListener('click', () => { show(current - 1); resetTimer(); });
