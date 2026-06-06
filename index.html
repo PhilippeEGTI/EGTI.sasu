@@ -103,7 +103,7 @@
     .google-logo { display: flex; align-items: center; gap: .6rem; font-size: .82rem; color: var(--gray); border-left: 1px solid rgba(255,255,255,.1); padding-left: 2rem; }
     .avis-carousel { overflow: hidden; position: relative; }
     .avis-track { display: flex; transition: transform .6s cubic-bezier(.4,0,.2,1); }
-    .avis-page { display: grid; gap: 1.4rem; min-width: 100%; }
+    .avis-page { display: grid; gap: 1.4rem; min-width: 100%; box-sizing: border-box; }
     .avis-grid { display: none; }
     .avis-card { background: var(--dark2); border: 1px solid rgba(255,255,255,.06); border-radius: var(--radius); padding: 2rem; }
     .stars { color: var(--yellow); font-size: .95rem; margin-bottom: .8rem; }
@@ -512,56 +512,57 @@
 
   // Carousel avis
   function initCarousel() {
-    const cards = Array.from(document.querySelectorAll('.avis-card'));
+    const grid = document.querySelector('.avis-grid');
     const carousel = document.querySelector('.avis-carousel');
     const dotsEl = document.getElementById('avisDots');
-    if (!cards.length || !carousel) return;
+    if (!grid || !carousel) return;
+
+    const cards = Array.from(grid.querySelectorAll('.avis-card'));
+    if (!cards.length) return;
 
     function getVisible() { return window.innerWidth < 700 ? 1 : window.innerWidth < 1100 ? 2 : 3; }
 
     let current = 0;
     let autoTimer;
-    let track;
+
+    // Vider le carousel et reconstruire le track
+    const existingTrack = carousel.querySelector('.avis-track');
+    if (existingTrack) existingTrack.remove();
+
+    const track = document.createElement('div');
+    track.className = 'avis-track';
+    carousel.appendChild(track);
 
     function build() {
       const visible = getVisible();
-      const pages = [];
+      track.innerHTML = '';
       for (let i = 0; i < cards.length; i += visible) {
-        pages.push(cards.slice(i, i + visible));
-      }
-
-      // Rebuild track
-      if (track) track.remove();
-      track = document.createElement('div');
-      track.className = 'avis-track';
-      pages.forEach(group => {
         const page = document.createElement('div');
         page.className = 'avis-page';
-        page.style.gridTemplateColumns = `repeat(${visible}, 1fr)`;
-        group.forEach(c => page.appendChild(c));
+        page.style.gridTemplateColumns = `repeat(${Math.min(visible, cards.length - i)}, 1fr)`;
+        cards.slice(i, i + visible).forEach(c => {
+          page.appendChild(c.cloneNode(true));
+        });
         track.appendChild(page);
-      });
-      carousel.insertBefore(track, dotsEl);
+      }
 
-      // Dots
       dotsEl.innerHTML = '';
-      pages.forEach((_, i) => {
+      const total = track.children.length;
+      for (let i = 0; i < total; i++) {
         const d = document.createElement('button');
-        d.className = 'avis-dot' + (i === current ? ' active' : '');
+        d.className = 'avis-dot';
         d.addEventListener('click', () => { goTo(i); resetTimer(); });
         dotsEl.appendChild(d);
-      });
-
-      goTo(current, true);
+      }
+      goTo(0, true);
     }
 
     function goTo(i, instant) {
       const total = track.children.length;
       current = (i + total) % total;
-      if (instant) track.style.transition = 'none';
+      track.style.transition = instant ? 'none' : 'transform .6s cubic-bezier(.4,0,.2,1)';
       track.style.transform = `translateX(-${current * 100}%)`;
-      if (instant) setTimeout(() => track.style.transition = '', 50);
-      dotsEl.querySelectorAll('.avis-dot').forEach((d, i) => d.classList.toggle('active', i === current));
+      dotsEl.querySelectorAll('.avis-dot').forEach((d, j) => d.classList.toggle('active', j === current));
     }
 
     function resetTimer() {
@@ -571,7 +572,7 @@
 
     document.getElementById('avisPrev').addEventListener('click', () => { goTo(current - 1); resetTimer(); });
     document.getElementById('avisNext').addEventListener('click', () => { goTo(current + 1); resetTimer(); });
-    window.addEventListener('resize', () => { current = 0; build(); resetTimer(); });
+    window.addEventListener('resize', () => { current = 0; build(); });
 
     build();
     resetTimer();
